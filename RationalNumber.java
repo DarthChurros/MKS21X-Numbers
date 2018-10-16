@@ -3,12 +3,19 @@ public class RationalNumber extends RealNumber{
   private int denom;
 
   public RationalNumber (int a, int b) {
-    super(1.0 * a / b);
+    super(0.0);
     num = a;
     denom = b;
   }
 
-  public boolean greaterThan(RationalNumber other) {
-    return true;
+  public boolean equals(RationalNumber other) {
+    return value;
+  }
+
+  public int gcf() {
+    int i = 0;
+    while () {
+      
+    }
   }
 }
