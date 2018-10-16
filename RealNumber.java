@@ -6,10 +6,29 @@ public class RealNumber {
   }
 
   public double getValue() {
-    return 7.0;
+    return value;
   }
 
-  public boolean greaterThan(RealNumber other) {
-    return true;
+  public boolean equals(RealNumber other) {
+    return value == (other.getValue());
+  }
+
+  public double add(RealNumber other) {
+    return value + other.getValue();
+  }
+
+  public double multiply(RealNumber other) {
+    return value * other.getValue();
+  }
+
+  public double divide(RealNumber other){
+    return value / other.getValue();
+  }
+  public double subtract(RealNumber other){
+    return value - other.getValue();
+  }
+
+  public String toString(){
+    return "" + value;
   }
 }
