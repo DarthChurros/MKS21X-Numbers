@@ -4,12 +4,13 @@ public class RationalNumber extends RealNumber{
 
   public RationalNumber (int a, int b) {
     super((double)a / b);
-    num = a;
-    denom = b;
+    int x = gcf(a, b);
+    num = a / x;
+    denom = b / x;
   }
 
   public boolean equals(RationalNumber other) {
-    return getValue() == other.getValue();
+    return num == other.num && denom == other.denom;
   }
 
   public static int gcf(int a, int b) {
@@ -19,5 +20,17 @@ public class RationalNumber extends RealNumber{
       b = c;
     }
     return Math.min(a,b);
+  }
+
+  public RationalNumber reciprocal() {
+    return new RationalNumber(denom, num);
+  }
+
+  public RationalNumber multiply(RationalNumber other) {
+    return new RationalNumber(num * other.num, denom * other.denom);
+  }
+
+  public RationalNumber divide(RationalNumber other) {
+    return multiply(other.reciprocal());
   }
 }
