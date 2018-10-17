@@ -3,19 +3,21 @@ public class RationalNumber extends RealNumber{
   private int denom;
 
   public RationalNumber (int a, int b) {
-    super(0.0);
+    super((double)a / b);
     num = a;
     denom = b;
   }
 
   public boolean equals(RationalNumber other) {
-    return value;
+    return getValue() == other.getValue();
   }
 
-  public int gcf() {
-    int i = 0;
-    while () {
-      
+  public static int gcf(int a, int b) {
+    while (a % b != 0 && b % a != 0) {
+      int c = Math.min(a,b);
+      a = Math.max(a,b) % Math.min(a,b);
+      b = c;
     }
+    return Math.min(a,b);
   }
 }
