@@ -22,6 +22,15 @@ public class RationalNumber extends RealNumber{
     return Math.min(a,b);
   }
 
+  public static int lcm(int a, int b) {
+    for (int i = 1; i <= b; i++) {
+      if ((i * a) % b == 0) {
+        return i * a;
+      }
+    }
+    return null;
+  }
+
   public RationalNumber reciprocal() {
     return new RationalNumber(denom, num);
   }
@@ -32,5 +41,14 @@ public class RationalNumber extends RealNumber{
 
   public RationalNumber divide(RationalNumber other) {
     return multiply(other.reciprocal());
+  }
+
+  public RationalNumber add(RationalNumber other) {
+    int x = lcm(denom, other.denom);
+    return new RationalNumber(num * x / denom + other.num * x / other.denom, x);
+  }
+
+  public RationalNumber subtract(RationalNumber other) {
+    return add(new RationalNumber(num * -1, denom));
   }
 }
