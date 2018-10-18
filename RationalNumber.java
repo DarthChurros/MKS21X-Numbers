@@ -2,22 +2,16 @@ public class RationalNumber extends RealNumber{
   private int num;
   private int denom;
 
-  public RationalNumber (int a, int b) {
-    super((double)a / b);
-    int x = gcf(a, b);
-    num = a / x;
-    denom = b / x;
-  }
-
-  public boolean equals(RationalNumber other) {
-    return num == other.num && denom == other.denom;
-  }
-
-  public static int gcf(int a, int b) {
+  public static int gcd(int a, int b) {
+    a = Math.abs(a);
+    b = Math.abs(b);
     while (a % b != 0 && b % a != 0) {
       int c = Math.min(a,b);
       a = Math.max(a,b) % Math.min(a,b);
       b = c;
+    }
+    if (a == 0) {
+      return 1;
     }
     return Math.min(a,b);
   }
@@ -28,7 +22,33 @@ public class RationalNumber extends RealNumber{
         return i * a;
       }
     }
-    return null;
+    return 0;
+  }
+
+  public RationalNumber (int a, int b) {
+    super((double)a / b);
+    if (b == 0) {
+      a = 0;
+      b = 1;
+    } else if (b < 0) {
+      a *= -1;
+      b *= -1;
+    }
+    int x = gcd(a, b);
+    num = a / x;
+    denom = b / x;
+  }
+
+  public boolean equals(RationalNumber other) {
+    return num == other.num && denom == other.denom;
+  }
+
+  public int getNumerator() {
+    return num;
+  }
+
+  public int getDenominator() {
+    return denom;
   }
 
   public RationalNumber reciprocal() {
@@ -50,5 +70,15 @@ public class RationalNumber extends RealNumber{
 
   public RationalNumber subtract(RationalNumber other) {
     return add(new RationalNumber(num * -1, denom));
+  }
+
+  public String toString() {
+    if (num == 0) {
+      return "0";
+    } else if (denom == 1) {
+      return "" + num;
+    } else {
+      return num + "/" + denom;
+    }
   }
 }
